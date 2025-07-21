@@ -1,0 +1,153 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "The Modern Cut API",
+        "description": "API Documentation for The Modern Cut Barbershop Reservation System",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/services": {
+            "get": {
+                "tags": [
+                    "Services"
+                ],
+                "summary": "Get list of services",
+                "operationId": "483721f8204dc8da211667b765a1c5da",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/v1/barbers": {
+            "get": {
+                "tags": [
+                    "Barbers"
+                ],
+                "summary": "Get list of active barbers",
+                "operationId": "34aa3dc472f18c2f79fcd58263dc69ad",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/api/v1/availability": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Check available time slots",
+                "operationId": "78d589e30402a285697bddd273ce0f09",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2025-07-25"
+                        }
+                    },
+                    {
+                        "name": "barber_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns available time slots"
+                    },
+                    "404": {
+                        "description": "Barber not working on this day"
+                    }
+                }
+            }
+        },
+        "/api/v1/reservations": {
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Create a new reservation",
+                "operationId": "9a8b23e8e3e017d6eac3fa4d986ab66f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "service_id",
+                                    "barber_id",
+                                    "start_time",
+                                    "customer_name",
+                                    "customer_email",
+                                    "customer_phone"
+                                ],
+                                "properties": {
+                                    "service_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "barber_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "start_time": {
+                                        "type": "string",
+                                        "format": "date-time",
+                                        "example": "2025-07-25 10:30:00"
+                                    },
+                                    "customer_name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "customer_email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "customer_phone": {
+                                        "type": "string",
+                                        "example": "08123456789"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Reservation created successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Services",
+            "description": "Services"
+        },
+        {
+            "name": "Barbers",
+            "description": "Barbers"
+        },
+        {
+            "name": "Reservations",
+            "description": "Reservations"
+        }
+    ]
+}

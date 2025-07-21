@@ -1,55 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        {{-- Judul halaman akan dinamis, dengan judul default 'The Modern Cut' --}}
+        <title>{{ $title ?? 'The Modern Cut' }} - Barbershop</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="barbershop, potong rambut, reservasi online" name="keywords">
+        <meta content="Barbershop modern dengan sistem reservasi online" name="description">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>@yield('title', 'Barber Shop')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="{{ asset('front/img/favicon.ico') }}" rel="icon">
 
-    {{-- Fonts and CSS --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('front/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/assets/css/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/assets/css/templatemo-scholar.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/assets/css/owl.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/assets/css/animate.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    @livewireStyles
-    @stack('styles')
-</head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{{ asset('front/lib/animate/animate.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('front/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('front/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
 
-<body>
+        <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+    </head>
 
-    {{-- Preloader --}}
-    {{-- <div id="js-preloader" class="js-preloader">
-        <div class="preloader-inner">
-            <span class="dot"></span>
-            <div class="dots"><span></span><span></span><span></span></div>
+    <body>
+        <div class="top-bar d-none d-md-block">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="top-bar-left">
+                            <div class="text">
+                                <h2>8:00 - 22:00</h2>
+                                <p>Buka Setiap Hari</p>
+                            </div>
+                            <div class="text">
+                                <h2>+62 895 0834 3263</h2>
+                                <p>Call Us For Appointment</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="top-bar-right">
+                            <div class="social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div> --}}
+        <div class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a href="{{ url('/') }}" class="navbar-brand">The Modern <span>Cut</span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    {{-- Global header (optional) --}}
-    @include('components.partial.header')
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
+                        <a href="{{ url('/about') }}" class="nav-item nav-link">About</a>
+                        <a href="{{ url('/services') }}" class="nav-item nav-link">Service</a>
+                        <a href="{{ url('/price') }}" class="nav-item nav-link">Price</a>
+                        <a href="{{ url('/team') }}" class="nav-item nav-link">Barber</a>
+                        <a href="{{ url('/portfolio') }}" class="nav-item nav-link">Gallery</a>
+                        <a href="{{ route('reservation') }}" class="nav-item nav-link">Reservasi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- KONTEN UTAMA DARI SETIAP HALAMAN AKAN DITAMPILKAN DI SINI --}}
+        {{ $slot }}
 
-    {{-- Page content --}}
-    {{-- @yield('content') --}}
-    {{ $slot }}
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="footer-contact">
+                                    <h2>Salon Address</h2>
+                                    <p><i class="fa fa-map-marker-alt"></i>Ruko Evangeline, Jakarta, Indonesia</p>
+                                    <p><i class="fa fa-phone-alt"></i>+62 895 0834 3263</p>
+                                    <p><i class="fa fa-envelope"></i>barber@barber.com</p>
+                                    <div class="footer-social">
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                        <a href=""><i class="fab fa-facebook-f"></i></a>
+                                        <a href=""><i class="fab fa-youtube"></i></a>
+                                        <a href=""><i class="fab fa-instagram"></i></a>
+                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="footer-link">
+                                    <h2>Quick Links</h2>
+                                    <a href="">Terms of use</a>
+                                    <a href="">Privacy policy</a>
+                                    <a href="">Cookies</a>
+                                    <a href="">Help</a>
+                                    <a href="">FQAs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="footer-newsletter">
+                            <h2>Newsletter</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet elit. Quisque eu lectus a leo dictum nec non quam. Tortor eu placerat rhoncus, lorem quam iaculis felis, sed lacus neque id eros.
+                            </p>
+                            <div class="form">
+                                <input class="form-control" placeholder="Email goes here">
+                                <button class="btn">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container copyright">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <a href="#">The Modern Cut</a>, All Right Reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-    {{-- Global footer (optional) --}}
-    @include('components.partial.footer')
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('front/lib/easing/easing.min.js') }}"></script>
+        <script src="{{ asset('front/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('front/lib/isotope/isotope.pkgd.min.js') }}"></script>
+        <script src="{{ asset('front/lib/lightbox/js/lightbox.min.js') }}"></script>
+        
+        <script src="{{ asset('front/mail/jqBootstrapValidation.min.js') }}"></script>
+        <script src="{{ asset('front/mail/contact.js') }}"></script>
 
-    {{-- Scripts --}}
-    <script src="{{ asset('front/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('front/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('front/assets/js/isotope.min.js') }}"></script>
-    <script src="{{ asset('front/assets/js/owl-carousel.js') }}"></script>
-    <script src="{{ asset('front/assets/js/counter.js') }}"></script>
-    <script src="{{ asset('front/assets/js/custom.js') }}"></script>
-
-    @livewireScripts
-    @stack('scripts')
-</body>
-
+        <script src="{{ asset('front/js/main.js') }}"></script>
+    </body>
 </html>
